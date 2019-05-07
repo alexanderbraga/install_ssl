@@ -1,6 +1,6 @@
-# Criar SSL para MAC OS
+# Criar SSL para XAMPP
 
-Passo a passo de como criar SSL para seu XAMPP no MAC
+Passo a passo de como criar SSL para seu XAMPP no MAC ou WINDOWS
 
 ![alt text](https://raw.githubusercontent.com/alexanderbraga/ssl_macos/branch/path/to/li.png)
 
@@ -15,3 +15,28 @@ Generate a RSA-2048 key and save it to a file `rootCA.key`. This file will be us
 You can use the key you generated to create a new Root SSL certificate. Save it to a file namedrootCA.pem. This certificate will have a validity of 1,024 days. Feel free to change it to any number of days you want. You’ll also be prompted for other optional information.
 
 `openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem`
+
+
+## Windows
+
+Se você tem alguma dúvida em como configurar um certificado auto assinado em ambiente local!
+Gostou compartilhe com os seus amigos =)
+
+Scripts para instalação no diretório apache.
+
+Primeiro vá até a pasta onde está o apache do seu Xampp, no meu caso é: 
+`C:\xampp\apache`, e crie um arquivo chamado `v3.ext`, com as configurações abaixo:
+
+`authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+ 
+[alt_names]
+DNS.1 = localhost`
+
+Depois edite o arquivo makecert.bat que está na mesma pasta, acrescentado a seguinte linha no arquivo:
+
+`500 -sha256 -extfile v3.ext`
+
+Execute o makecert.bat
