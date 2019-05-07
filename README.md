@@ -30,9 +30,9 @@ Primeiro vá até a pasta onde está o apache do seu Xampp, no meu caso é:
 `authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
-subjectAltName = @alt_names
+subjectAltName = @alt_names`
  
-[alt_names]
+`[alt_names]
 DNS.1 = localhost`
 
 Depois edite o arquivo makecert.bat que está na mesma pasta, acrescentado a seguinte linha no arquivo:
